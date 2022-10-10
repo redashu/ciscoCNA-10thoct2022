@@ -28,5 +28,22 @@
 
 <img src="saas.png">
 
+## Design model of cloud 
+
+### Region 
+
+<img src="rg.png">
+
+### Understanding av zone 
+
+<img src="zone.png">
+
+### IAAS Service 
+
+<img src="iaas.png">
+
+### Avzone -- storage and VM 
+
+<img src="stvm.png">
 
 

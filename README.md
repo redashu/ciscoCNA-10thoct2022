@@ -67,6 +67,18 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 
 <img src="serverless.png">
 
+### AWS lambda function -- using container concept in the backend 
+
+<img src="lambda.png">
+
+### write code for application but still provision cloud resources manually 
+
+<img src="res.png">
+
+### IAC
+
+<img src="iac.png">
+
 
 
 

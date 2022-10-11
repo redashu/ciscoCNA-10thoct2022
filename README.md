@@ -59,5 +59,10 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 
 ```
 
+### Containers vs beanstalk 
+
+<img src="bean.png">
+
+
 
 

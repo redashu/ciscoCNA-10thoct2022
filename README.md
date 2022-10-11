@@ -548,6 +548,10 @@ Do you really want to destroy all resources?
 aws_instance.ashuvm1: Destroying... [id=i-0dd20c553c67aa437]
 aws_instance.ashuvm1: Still destroying... [id=i-0dd20c553c67aa437, 10s elapsed]
 ```
+### Monolith -- Micro services 
+
+<img src="mono2micro.png">
+
 
 
 

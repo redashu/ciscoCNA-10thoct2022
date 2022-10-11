@@ -79,6 +79,56 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 
 <img src="iac.png">
 
+### Info about terraform 
 
+<img src="terraform.png">
+
+### terraform workplan 
+
+<img src="plan.png">
+
+### terraform installed on Mac 
+
+```
+fire@ashutoshhs-MacBook-Air Desktop % ./terraform version 
+Terraform v1.3.2
+on darwin_amd64
+fire@ashutoshhs-MacBook-Air Desktop % sudo mv terraform  /usr/local/bin 
+Password:
+fire@ashutoshhs-MacBook-Air Desktop % 
+fire@ashutoshhs-MacBook-Air Desktop % terraform version 
+Terraform v1.3.2
+on darwin_amd64
+fire@ashutoshhs-MacBook-Air Desktop % 
+
+
+```
+
+### Understanding terraform connection 
+
+<img src="terraformc.png">
+
+### Terraform sample script 
+
+```
+provider "aws" {
+    region = "ap-south-1" # region name -- mumbai 
+    # we will use api keys of aws cloud 
+    access_key = ""
+    secret_key =  ""  
+}
+
+# planning resources in aws cloud 
+# aws_instance is a module we are using 
+resource "aws_instance" "ashuvm1" {
+    ami = "ami-01216e7612243e0ef"
+    instance_type = "t2.micro"
+    key_name = "ashu-private-key"
+    tags = {
+      "Name" = "ashuvm-by-terraform"
+    }
+  
+}
+```
 
 

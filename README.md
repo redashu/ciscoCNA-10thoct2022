@@ -166,6 +166,48 @@ Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.6", GitCom
 
 ```
 
+### EKS connection  after setting aws congiure 
+
+```
+ kubectl   cluster-info  --kubeconfig /tmp/eks-cred  
+Kubernetes control plane is running at https://BB48C747C2126F16F8B15FF9A338ED9E.gr7.ap-south-1.eks.amazonaws.com
+CoreDNS is running at https://BB48C747C2126F16F8B15FF9A338ED9E.gr7.ap-south-1.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+```
+
+### kubectl client 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  get nodes   --kubeconfig /tmp/eks-cred  
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-47-179.ap-south-1.compute.internal   Ready    <none>   21m   v1.22.12-eks-ba74326
+ip-192-168-82-186.ap-south-1.compute.internal   Ready    <none>   21m   v1.22.12-eks-ba74326
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+
+```
+
+### Copy k8s client config 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ mkdir ~/.kube 
+mkdir: cannot create directory ‘/home/ashu/.kube’: File exists
+[ashu@ip-172-31-44-55 ashu-container-apps]$ cp -v /tmp/eks-cred   ~/.kube/config 
+‘/tmp/eks-cred’ -> ‘/home/ashu/.kube/config’
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl   get  nodes
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-47-179.ap-south-1.compute.internal   Ready    <none>   27m   v1.22.12-eks-ba74326
+ip-192-168-82-186.ap-south-1.compute.internal   Ready    <none>   27m   v1.22.12-eks-ba74326
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+
+```
+
+
 
 
 

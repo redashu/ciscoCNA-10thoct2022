@@ -282,6 +282,41 @@ rishabh-webapp-56477874b5-g9cc5     1/1     Running   0          5m53s   192.168
 srushti-webapp-67c99fdb6d-p5vpp     1/1     Running   0          2m52s   192.168.31.207   ip-192-168-24-65.ap-south-1.compute.internal   <none>           <none>
 ```
 
+### self healing 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  delete pod ashu-webapp-6d7f784599-7xv44  
+pod "ashu-webapp-6d7f784599-7xv44" deleted
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+akp-webapp-8f95fcdc5-pcd9h          1/1     Running   0          8m39s
+ar-nikhil-webapp-6b444d5959-qjpfv   1/1     Running   0          8m19s
+ashu-webapp-6d7f784599-2zx9l        1/1     Running   0          5s
+gowtham-webapp-59ddd9d47f-9tv44     1/1     Running   0          9m12s
+```
+
+### scaling app manually 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  scale deployment ashu-webapp  --replicas=3
+deployment.apps/ashu-webapp scaled
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl   get deployments 
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+akp-webapp         1/1     1            1           11m
+ar-nikhil-webapp   1/1     1            1           11m
+ashu-webapp        2/3     3            2           12m
+gowtham-webapp     1/1     1            1           12m
+mrsethi-app        1/1     1            1           12m
+ravi-app           1/1     1            1           12m
+rishabh-webapp     1/1     1            1           12m
+srushti-webapp     1/1     1            1           9m36s
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl   get deployments 
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+akp-webapp         1/1     1            1           11m
+ar-nikhil-webapp   1/1     1            1           11m
+ashu-webapp        3/3     3            3           13m
+```
+
 
 
 

@@ -207,6 +207,39 @@ ip-192-168-82-186.ap-south-1.compute.internal   Ready    <none>   27m   v1.22.12
 
 ```
 
+## application deploy to k8s Journey 
+
+<img src="appd.png">
+
+### image pushing to docker hub to deploy in k8s 
+
+```
+ashuapp           v001      d4a97b46148e   4 hours ago   142MB
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker  tag  ashuapp:v001   dockerashu/ashuapp:v001 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker login -u dockerashu
+Password: 
+WARNING! Your password will be stored unencrypted in /home/ashu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+
+====
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker push  dockerashu/ashuapp:v001
+The push refers to repository [docker.io/dockerashu/ashuapp]
+9e1696485880: Pushed 
+d6a3537fc36a: Mounted from library/nginx 
+819eb3a45632: Mounted from library/nginx 
+5eda6fa69be4: Mounted from library/nginx 
+6f4f3ce1dca0: Mounted from library/nginx 
+
+```
+
+
+
 
 
 

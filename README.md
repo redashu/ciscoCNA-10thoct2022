@@ -238,6 +238,49 @@ d6a3537fc36a: Mounted from library/nginx
 
 ```
 
+### Creating deployment using YAML 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  create deployment  ashu-webapp --image=dockerashu/ashuapp:v001  --replicas=1  --port 80 --dry-run=client -o yaml  >app_deploy.yaml 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ ls
+app_deploy.yaml  docker-compose.yaml  Dockerfile  ui-app
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+```
+
+### lets deploy it 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  apply -f  app_deploy.yaml 
+deployment.apps/ashu-webapp created
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  get  deployments 
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+ashu-webapp   0/1     1            0           6s
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+```
+
+### check more details about pods 
+
+```
+ 91  history 
+   92  kubectl  create deployment  ashu-webapp --image=dockerashu/ashuapp:v001  --replicas=1  --port 80 --dry-run=client -o 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  get  nodes
+NAME                                           STATUS   ROLES    AGE   VERSION
+ip-192-168-24-65.ap-south-1.compute.internal   Ready    <none>   54m   v1.22.12-eks-ba74326
+ip-192-168-64-96.ap-south-1.compute.internal   Ready    <none>   52m   v1.22.12-eks-ba74326
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  get  pods -o wide
+NAME                                READY   STATUS    RESTARTS   AGE     IP               NODE                                           NOMINATED NODE   READINESS GATES
+akp-webapp-8f95fcdc5-pcd9h          1/1     Running   0          5m      192.168.15.25    ip-192-168-24-65.ap-south-1.compute.internal   <none>           <none>
+ar-nikhil-webapp-6b444d5959-qjpfv   1/1     Running   0          4m40s   192.168.78.16    ip-192-168-64-96.ap-south-1.compute.internal   <none>           <none>
+ashu-webapp-6d7f784599-7xv44        1/1     Running   0          6m7s    192.168.90.222   ip-192-168-64-96.ap-south-1.compute.internal   <none>           <none>
+gowtham-webapp-59ddd9d47f-9tv44     1/1     Running   0          5m33s   192.168.91.94    ip-192-168-64-96.ap-south-1.compute.internal   <none>           <none>
+mrsethi-app-6dfb498fc-2s62v         1/1     Running   0          6m      192.168.86.227   ip-192-168-64-96.ap-south-1.compute.internal   <none>           <none>
+ravi-app-5db568d77f-4j45m           1/1     Running   0          5m33s   192.168.13.161   ip-192-168-24-65.ap-south-1.compute.internal   <none>           <none>
+rishabh-webapp-56477874b5-g9cc5     1/1     Running   0          5m53s   192.168.73.125   ip-192-168-64-96.ap-south-1.compute.internal   <none>           <none>
+srushti-webapp-67c99fdb6d-p5vpp     1/1     Running   0          2m52s   192.168.31.207   ip-192-168-24-65.ap-south-1.compute.internal   <none>           <none>
+```
 
 
 

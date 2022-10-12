@@ -96,5 +96,42 @@ f45b637b3ded   ashuapp:v1   "/docker-entrypoint.…"   3 seconds ago   Up 2 seco
 
 ```
 
+### Scripting docker steps 
+
+<img src="compose.png">
+
+### running compose 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker-compose  up -d
+[+] Running 2/2
+ ⠿ Network ashu-container-apps_default  Created                                   0.1s
+ ⠿ Container ashuc1                     Started                                   0.7s
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker-compose  ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+ashuc1              "/docker-entrypoint.…"   ashu-ui-app         running             0.0.0.0:1234->80/tcp, :::1234->80/tcp
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+
+```
+
+### to destroy all 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker-compose  up -d
+[+] Running 2/2
+ ⠿ Network ashu-container-apps_default  Created                                   0.1s
+ ⠿ Container ashuc1                     Started                                   0.7s
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker-compose  ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+ashuc1              "/docker-entrypoint.…"   ashu-ui-app         running             0.0.0.0:1234->80/tcp, :::1234->80/tcp
+[ashu@ip-172-31-44-55 ashu-container-apps]$ docker-compose  down 
+[+] Running 2/2
+ ⠿ Container ashuc1                     Removed                                                  0.8s
+ ⠿ Network ashu-container-apps_default  Removed                                                  0.1s
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+```
+
 
 

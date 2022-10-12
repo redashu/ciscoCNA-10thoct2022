@@ -132,6 +132,40 @@ ashuc1              "/docker-entrypoint.…"   ashu-ui-app         running      
 [ashu@ip-172-31-44-55 ashu-container-apps]$ 
 
 ```
+### SOme standards 
+
+<img src="std.png">
+
+### Deploying containers based application in Distributed environment is having some known issues 
+
+<img src="prob.png">
+
+## Introduction to k8s 
+
+<img src="k8s.png">
+
+### k8s on cloud 
+
+<img src="k8scloud.png">
+
+### k8s benefits on cloud 
+
+<img src="benefit.png">
+
+### k8s client 
+
+<img src="client.png">
+
+### checking client 
+
+```
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+[ashu@ip-172-31-44-55 ashu-container-apps]$ kubectl  version --client 
+Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.6", GitCommit:"ad3338546da947756e8a88aa6822e9c11e7eac22", GitTreeState:"clean", BuildDate:"2022-04-14T08:49:13Z", GoVersion:"go1.17.9", Compiler:"gc", Platform:"linux/amd64"}
+[ashu@ip-172-31-44-55 ashu-container-apps]$ 
+
+```
+
 
 
 

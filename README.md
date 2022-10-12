@@ -317,6 +317,24 @@ ar-nikhil-webapp   1/1     1            1           11m
 ashu-webapp        3/3     3            3           13m
 ```
 
+### app deployment summary in k8s 
+
+<img src="summary.png">
+
+### k8s -- outside & inside -- Networking 
+
+<img src="net.png">
+
+### Container networking 
+
+<img src="cnet.png">
+
+### Journey for tomorrow session 
+
+<img src="tm.png">
+
+
+
 
 
 

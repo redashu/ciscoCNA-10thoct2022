@@ -167,5 +167,33 @@ docker-compose ps
 
 <img src="cd.png">
 
+### creating and setting namepsace as default 
+
+```
+[ashu@ip-172-31-44-55 ashu-cisco-app]$ kubectl  create namespace  ashu-space 
+namespace/ashu-space created
+[ashu@ip-172-31-44-55 ashu-cisco-app]$ kubectl  get  namespaces 
+NAME                   STATUS   AGE
+ashu-space             Active   7s
+datadog                Active   4h12m
+default                Active   5h19m
+gowtham-space          Active   1s
+ingress-nginx          Active   4h46m
+kube-node-lease        Active   5h19m
+kube-public            Active   5h19m
+kube-system            Active   5h19m
+kubernetes-dashboard   Active   4h45m
+mrsethi-space          Active   0s
+[ashu@ip-172-31-44-55 ashu-cisco-app]$ kubectl  config  set-context  --current  --namespace=ashu-space 
+Context "eks" modified.
+[ashu@ip-172-31-44-55 ashu-cisco-app]$ 
+
+```
+
+### K8s app routing from client to k8s pod container 
+
+<img src="podc.png">
+
+
 
 

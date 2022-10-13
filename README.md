@@ -163,4 +163,9 @@ sleep 3
 docker-compose ps 
 ```
 
+### Lets begin CD by jenkins -- which is going to be k8s client 
+
+<img src="cd.png">
+
+
 

@@ -149,3 +149,18 @@ To https://github.com/redashu/ashu-cisco-app.git
    7feb632..ef25d4c  master -> maste
 ```
 
+
+### creating jenkins jobs to check in every two minutes about -- repo changes 
+
+<img src="changes.png">
+
+### in jenkins build step 
+
+```
+docker-compose down 
+docker-compose up -d --build 
+sleep 3
+docker-compose ps 
+```
+
+

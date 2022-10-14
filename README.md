@@ -175,3 +175,16 @@ NAME             CLASS   HOSTS             ADDRESS                              
 ashu-app-route   nginx   me.ashutoshh.in   ac190b5f79751494d8703a72e8110451-2afe4e2102dd40e1.elb.ap-south-1.amazonaws.com   80      18m
 [ashu@ip-172-31-44-55 deploy-app]$ 
 ```
+### deleting all the resources in k8s --personal namespace 
+
+```
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  delete deploy ashu-app 
+deployment.apps "ashu-app" deleted
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  delete service  ashu-internal-lb 
+service "ashu-internal-lb" deleted
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  delete ingress  ashu-app-route 
+ingress.networking.k8s.io "ashu-app-route" deleted
+[ashu@ip-172-31-44-55 deploy-app]$ 
+
+```
+

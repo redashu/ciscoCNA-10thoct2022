@@ -112,4 +112,66 @@ ashu-app-5794dc5cb9-fnsx6   1/1     Running   0          29s   192.168.82.30    
 [ashu@ip-172-31-44-55 deploy-app]$ 
 ```
 
+### creating Internal LB to forward traffic to pods 
 
+<img src="lb.png">
+
+### creating internal lb 
+
+```
+484  kubectl  expose  deploy  ashu-app  --port  80 --name ashu-internal-lb --namespace=ashu-space    --dry-run=client -o yaml >lb.yaml 
+  485  history 
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  apply -f  lb.yaml 
+service/ashu-internal-lb created
+[ashu@ip-172-31-44-55 deploy-app]$ 
+[ashu@ip-172-31-44-55 deploy-app]$ 
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl   get  service 
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+ashu-internal-lb   ClusterIP   10.100.79.46   <none>        80/TCP    6s
+[ashu@ip-172-31-44-55 deploy-app]$ 
+[ashu@ip-172-31-44-55 deploy-app]$ 
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl   get  endpoints
+NAME               ENDPOINTS                            AGE
+ashu-internal-lb   192.168.56.220:80,192.168.82.30:80   16s
+[ashu@ip-172-31-44-55 deploy-app]$ 
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  get po -owide
+NAME                        READY   STATUS    RESTARTS   AGE   IP               NODE                                            NOMINATED NODE   READINESS GATES
+ashu-app-5794dc5cb9-9wcf6   1/1     Running   0          24m   192.168.56.220   ip-192-168-33-254.ap-south-1.compute.internal   <none>           <none>
+ashu-app-5794dc5cb9-fnsx6   1/1     Running   0          24m   192.168.82.30    ip-192-168-70-8.ap-south-1.compute.internal     <none>           <none>
+```
+
+### app route by Ingress 
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ashu-app-route # name of routing rule 
+  namespace: ashu-space  # namespace info 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # ingress className 
+  rules:
+  - host: me.ashutoshh.in # domain website name 
+    http:
+      paths:
+      - path: /  # home page 
+        pathType: Prefix
+        backend:
+          service:
+            name: ashu-internal-lb # name of internal LB 
+            port:
+              number: 80
+```
+
+### lets deploy it 
+
+```
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl apply -f ingress.yaml 
+ingress.networking.k8s.io/ashu-app-route unchanged
+[ashu@ip-172-31-44-55 deploy-app]$ kubectl  get  ingress
+NAME             CLASS   HOSTS             ADDRESS                                                                          PORTS   AGE
+ashu-app-route   nginx   me.ashutoshh.in   ac190b5f79751494d8703a72e8110451-2afe4e2102dd40e1.elb.ap-south-1.amazonaws.com   80      18m
+[ashu@ip-172-31-44-55 deploy-app]$ 
+```

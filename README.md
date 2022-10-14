@@ -188,3 +188,65 @@ ingress.networking.k8s.io "ashu-app-route" deleted
 
 ```
 
+### info about MYSQL DB 
+
+<img src="mysql.png">
+
+### create db as pod 
+
+```
+ 531  kubectl create deployment mydep1 --image=mysql:5.6 --port 3306   --dry-run=client --dry-run=client -o yaml >db.yaml
+  532  ls
+  533  kubectl apply -f db.yaml 
+  534  kubectl  get deploy
+  535  kubectl  get po
+  536  kubectl  logs mydep1-7fbcd87c68-8b8q4 
+  537  kubectl apply -f db.yaml 
+  538  kubectl  get deploy
+  539  kubectl  get po
+  540  kubectl  expose deployment mydep1 --port 3306 --name lb2 --dry-run=client -o yaml 
+  541  history 
+  542  kubectl  expose deployment mydep1 --port 3306 --name lb2 --dry-run=client -o yaml >l2.yaml
+  543  kubectl apply -f l2.yaml 
+  544  history 
+  545  kubectl  get  service
+  546  kubectl  get endpoints
+  547  kubectl  get po -o wide
+```
+
+### YAML 
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mydep1
+  name: mydep1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mydep1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mydep1
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        ports:
+        - containerPort: 3306
+        resources: {}
+        env: 
+        - name: MYSQL_ROOT_PASSWORD
+          value: Cisco800Db
+status: {}
+
+```
+
+
